@@ -7,7 +7,7 @@
 //   "live"  -> buttons link to the real store pages
 // ─────────────────────────────────────────────────────────────
 window.WANDR_CONFIG = {
-  mode: "beta",
+  mode: "soon",
 
   beta: {
     ios: "https://testflight.apple.com/join/XXXXXXXX", // placeholder TestFlight public link

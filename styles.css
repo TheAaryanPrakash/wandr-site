@@ -118,7 +118,7 @@ h2{font-size:clamp(32px,6vw,58px);line-height:1.06;letter-spacing:-.035em;font-w
 .note{color:var(--text2);font-size:12px}
 .chip{position:absolute;padding:11px 16px;border-radius:999px;font-size:14px;white-space:nowrap;animation:bob 6s ease-in-out infinite}
 .chip b{color:var(--accent)}
-.chip-a{left:2%;top:14%}.chip-b{right:0;bottom:16%;animation-delay:-3s}
+.chip-a{left:0;top:48%}.chip-b{right:0;bottom:16%;animation-delay:-3s}
 .float{animation:bob 7s ease-in-out infinite}
 @keyframes bob{50%{transform:translateY(-12px)}}
 

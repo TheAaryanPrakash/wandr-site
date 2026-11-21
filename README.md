@@ -35,8 +35,8 @@ Open http://localhost:8080. Preview device behaviour on desktop with
 - iPhone: App Store button first. Android: Google Play first. Desktop: both
   buttons plus a QR code to `qrTarget`.
 - Mobile visitors get a dismissible top banner and a sticky bottom bar.
-- `mode: "beta"` (default) shows "Join the beta" buttons with a Beta tag.
-  `mode: "soon"` shows a "Coming soon" tag and a notify-by-email prompt.
+- `mode: "beta"` shows "Join the beta" buttons with a Beta tag.
+  `mode: "soon"` (default) shows a "Coming soon" tag and a notify-by-email prompt.
 
 ## Official store badges
 
