@@ -94,55 +94,82 @@
     walk(statement);
   }
 
-  function sizeGallery() {
-    if (!gallery || !track) return;
-    if (!wide()) { gallery.style.removeProperty("--gallery-h"); track.style.transform = ""; return; }
-    var travel = Math.max(0, track.scrollWidth - innerWidth);
-    gallery.style.setProperty("--gallery-h", innerHeight + travel + "px");
+  // Positions are measured once (and on resize), never inside the frame
+  // loop: reading layout right after writing a transform forces the browser
+  // to lay the whole page out again every frame, which is what stutters.
+  var M = {};
+  function pageTop(el) { var r = el.getBoundingClientRect(); return r.top + scrollY; }
+  function measure() {
+    M.vh = innerHeight;
+    M.wide = wide();
+    if (gallery && track) {
+      if (!M.wide) { gallery.style.removeProperty("--gallery-h"); track.style.transform = ""; }
+      else {
+        M.travel = Math.max(0, track.scrollWidth - innerWidth);
+        gallery.style.setProperty("--gallery-h", innerHeight + M.travel + "px");
+      }
+      M.gTop = pageTop(gallery); M.gH = gallery.offsetHeight;
+    }
+    if (band) { M.half = band.scrollWidth / 2; M.bTop = pageTop(band); M.bH = band.offsetHeight; }
+    if (how) { M.hTop = pageTop(how); M.hH = how.offsetHeight; }
+    if (statement) { M.sTop = pageTop(statement); M.sH = statement.offsetHeight; }
   }
-  sizeGallery();
-  addEventListener("resize", sizeGallery);
-  addEventListener("load", sizeGallery);
+  measure();
+  var resizeTimer;
+  addEventListener("resize", function () { clearTimeout(resizeTimer); resizeTimer = setTimeout(measure, 120); });
+  addEventListener("load", measure);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
 
-  var bandX = 0, lastY = scrollY, vel = 0;
+  var bandX = 0, lastY = scrollY, vel = 0, lastP = -1, lastS = -1, lastLit = -1;
+  function near(top, h, y) { return y + M.vh > top - 200 && y < top + h + 200; }
   function frame() {
-    var y = scrollY, vh = innerHeight;
+    var y = scrollY, vh = M.vh;
     vel += (y - lastY - vel) * 0.1; lastY = y;
 
-    // Band: always drifting, faster (either way) when you scroll.
-    if (band) {
+    // Band: always drifting, faster (either way) when you scroll. Only
+    // while it is on screen.
+    if (band && near(M.bTop, M.bH, y)) {
       bandX -= 0.6 + Math.min(Math.abs(vel) * 0.35, 14);
-      var half = band.scrollWidth / 2;
-      if (-bandX > half) bandX += half;
+      if (-bandX > M.half) bandX += M.half;
       band.style.transform = "translate3d(" + bandX.toFixed(1) + "px,0,0)";
     }
 
     // Gallery: scroll down, the phones slide left.
-    if (gallery && track && wide()) {
-      var g = gallery.getBoundingClientRect();
-      var travel = Math.max(0, track.scrollWidth - innerWidth);
-      var p = Math.min(1, Math.max(0, -g.top / Math.max(1, g.height - vh)));
-      track.style.transform = "translate3d(" + (-p * travel).toFixed(1) + "px,0,0)";
-      if (progress) progress.style.setProperty("--p", p.toFixed(4));
+    if (gallery && track && M.wide) {
+      var p = Math.min(1, Math.max(0, (y - M.gTop) / Math.max(1, M.gH - vh)));
+      if (Math.abs(p - lastP) > 0.0002) {
+        lastP = p;
+        track.style.transform = "translate3d(" + (-p * M.travel).toFixed(1) + "px,0,0)";
+        if (progress) progress.style.setProperty("--p", p.toFixed(4));
+      }
     }
 
     // How: the road draws as the section passes.
     if (road && how) {
-      var h = how.getBoundingClientRect();
-      var s = Math.min(1, Math.max(0, (vh * 0.85 - h.top) / (h.height * 0.8)));
-      road.style.setProperty("--s", s.toFixed(4));
+      var s = Math.min(1, Math.max(0, (y + vh * 0.85 - M.hTop) / (M.hH * 0.8)));
+      if (Math.abs(s - lastS) > 0.001) { lastS = s; road.style.setProperty("--s", s.toFixed(4)); }
     }
 
-    // Statement: words light up as you read down.
+    // Statement: words light up as you read down; only the words that
+    // changed are touched.
     if (wordSpans.length) {
-      var r = statement.getBoundingClientRect();
-      var q = Math.min(1, Math.max(0, (vh * 0.8 - r.top) / (r.height + vh * 0.35)));
+      var q = Math.min(1, Math.max(0, (y + vh * 0.8 - M.sTop) / (M.sH + vh * 0.35)));
       var lit = Math.round(q * wordSpans.length);
-      for (var i = 0; i < wordSpans.length; i++) wordSpans[i].classList.toggle("on", i < lit);
+      if (lit !== lastLit) {
+        var from = Math.min(lit, lastLit < 0 ? 0 : lastLit), to = Math.max(lit, lastLit < 0 ? wordSpans.length : lastLit);
+        for (var i = from; i < to; i++) wordSpans[i].classList.toggle("on", i < lit);
+        lastLit = lit;
+      }
     }
     requestAnimationFrame(frame);
   }
   requestAnimationFrame(frame);
+
+  // Sections off screen stop their CSS animations.
+  var rest = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) { en.target.classList.toggle("off", !en.isIntersecting); });
+  }, { rootMargin: "100px 0px" });
+  document.querySelectorAll(".hero,.gallery,.features,.how,.cta").forEach(function (el) { rest.observe(el); });
 
   // ── Live tiles ──────────────────────────────────────────────
   // Recording: the distance ticks up while the tile is on screen.
