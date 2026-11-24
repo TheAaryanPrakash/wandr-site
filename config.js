@@ -20,7 +20,7 @@ window.WANDR_CONFIG = {
   },
 
   // Desktop QR code target. Use a page that redirects by device, or the site itself.
-  qrTarget: "https://wandr.app", // placeholder
+  qrTarget: "https://drivewandr.in",
 
-  contactEmail: "hello@wandr.app", // placeholder
+  contactEmail: "drivewandr@gmail.com",
 };
