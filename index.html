@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Wandr: every journey tells a story</title>
-<meta name="description" content="Wandr is a journal for drives and rides taken for the pleasure of it. Record a journey, relive it, share it, discover great roads and ride together on a live map with a walkie-talkie.">
-<meta name="theme-color" content="#000000">
+<meta name="description" content="Wandr is a journal for drives and rides taken for the pleasure of it. Record a journey, relive it, share it, and ride together with friends on a live map.">
+<meta name="theme-color" content="#05050a">
 <meta name="color-scheme" content="dark">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
@@ -13,47 +13,20 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Wandr">
 <meta property="og:title" content="Wandr: every journey tells a story">
-<meta property="og:description" content="Record drives and rides, relive them, share them, and ride together on a live map with push-to-talk voice.">
+<meta property="og:description" content="Record drives and rides, relive them, share them, and ride together on a live map.">
 <meta property="og:url" content="https://theaaryanprakash.github.io/wandr-site/">
 <meta property="og:image" content="https://theaaryanprakash.github.io/wandr-site/assets/og-image.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Wandr: every journey tells a story">
-<meta name="twitter:description" content="Record drives and rides, relive them, share them, and ride together on a live map.">
-<meta name="twitter:image" content="https://theaaryanprakash.github.io/wandr-site/assets/og-image.png">
-<link rel="stylesheet" href="styles.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"MobileApplication","name":"Wandr","applicationCategory":"TravelApplication","operatingSystem":"iOS, Android","description":"A journal for drives and rides: record, relive, share and ride together."}</script>
 </head>
 <body>
-
-<!-- Shared SVG art: the map used inside every phone mockup -->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-  <defs>
-    <symbol id="map" viewBox="0 0 300 600" preserveAspectRatio="xMidYMid slice">
-      <rect width="300" height="600" fill="#2B3140"/>
-      <g fill="none" stroke="#454C5E" stroke-linecap="round">
-        <path d="M-20 90 L320 150" stroke-width="9"/>
-        <path d="M-20 330 L320 270" stroke-width="7"/>
-        <path d="M-20 520 C80 470 200 560 320 470" stroke-width="9"/>
-        <path d="M70 -20 L110 620" stroke-width="7"/>
-        <path d="M215 -20 L190 620" stroke-width="9"/>
-        <path d="M-20 200 L320 215" stroke-width="3"/>
-        <path d="M-20 420 L320 410" stroke-width="3"/>
-        <path d="M150 -20 L160 620" stroke-width="3"/>
-      </g>
-      <path d="M232 300 L300 330 L300 380 L248 372 Z" fill="#26453a" opacity=".7"/>
-      <path d="M-10 230 L60 238 L52 300 L-10 296 Z" fill="#26453a" opacity=".6"/>
-    </symbol>
-    <symbol id="route" viewBox="0 0 300 600">
-      <path d="M40 560 C60 470 150 500 140 410 C130 330 230 350 215 260 C205 190 120 200 128 120 C132 80 190 70 215 40" fill="none" stroke="#FFC5D3" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-    </symbol>
-  </defs>
-</svg>
-
 <a class="skip" href="#main">Skip to content</a>
 
-<!-- Top banner: shown to mobile visitors until dismissed -->
+<!-- Top banner: mobile visitors, until dismissed (script.js) -->
 <div class="appbar" id="appbar" hidden>
   <img src="assets/wandr-mark.png" width="40" height="40" alt="">
   <div class="appbar-text"><strong>Wandr</strong><span data-appbar-sub>Every journey tells a story</span></div>
@@ -61,232 +34,265 @@
   <button class="appbar-x" type="button" aria-label="Dismiss app banner" id="appbarX">&times;</button>
 </div>
 
-<header class="nav-wrap">
-  <nav class="nav glass" aria-label="Main">
+<header class="nav-wrap" id="nav">
+  <nav class="nav" aria-label="Main">
     <a class="brand" href="#top" aria-label="Wandr home">
-      <img src="assets/wandr-mark.png" width="28" height="28" alt="">
-      <span>Wandr<b class="dot-end">.</b></span>
+      <img src="assets/wandr-mark.png" width="30" height="30" alt="">
+      <span>Wandr<b>.</b></span>
     </a>
     <ul class="nav-links">
+      <li><a href="#app">The app</a></li>
       <li><a href="#features">Features</a></li>
-      <li><a href="#screens">Screens</a></li>
       <li><a href="#ride">Ride together</a></li>
-      <li><a href="#how">How it works</a></li>
       <li><a href="#faq">FAQ</a></li>
     </ul>
-    <a class="btn btn-sm" href="#download">Download</a>
+    <a class="btn btn-sm" href="#download">Get Wandr</a>
   </nav>
 </header>
 
 <main id="main">
 
-<!-- ───────── HERO ───────── -->
+<!-- ════════════ HERO: a night drive into the neon sun ════════════ -->
 <section class="hero" id="top">
-  <div class="sun" aria-hidden="true"></div>
+  <div class="sky" aria-hidden="true">
+    <div class="stars"></div>
+    <div class="sun"><i></i></div>
+    <div class="horizon"></div>
+    <div class="grid"><div class="grid-plane"></div></div>
+  </div>
+
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <p class="pill reveal"><span class="dot"></span> Coming soon to iPhone &amp; Android</p>
-      <h1 class="reveal">Every journey<br>tells a <em>story.</em></h1>
-      <p class="lede reveal">Wandr is a journal for drives and rides taken for the pleasure of it. Record a journey, relive it, share it, and ride together with friends on a live map.</p>
-      <div class="reveal"><div class="dl" data-download></div></div>
-      <p class="fine reveal">Free to start. Works offline. You choose who sees each journey.</p>
+      <p class="pill" data-in><span class="live-dot"></span> Coming soon to iPhone &amp; Android</p>
+      <h1 class="hero-title" aria-label="Every journey tells a story.">
+        <span class="line"><span data-word>Every</span> <span data-word>journey</span></span>
+        <span class="line"><span data-word>tells</span> <span data-word>a</span> <span data-word class="hot">story.</span></span>
+      </h1>
+      <p class="lede" data-in>Wandr is a journal for drives and rides taken for the pleasure of it. Hit record, take the long way, and get the whole journey back: drawn on the map, ready to relive and share.</p>
+      <div class="hero-actions" data-in>
+        <a class="btn btn-lg btn-shine" href="#download">Get notified at launch</a>
+        <a class="btn btn-lg btn-ghost" href="#app">See it in action</a>
+      </div>
+      <p class="fine" data-in>Free to start. Records with no signal. You choose who sees each journey.</p>
     </div>
-    <div class="hero-phone reveal">
-      <div class="phone phone-lg float"><div class="screen"><img src="assets/shots/share.jpg" width="300" height="652" alt="A Wandr journey card ready to share"></div></div>
-      <div class="chip glass chip-a"><b>3</b> friends on the road</div>
-      <div class="chip glass chip-b">New badge · <b>1,000 km</b></div>
+
+    <div class="hero-stage" data-parallax>
+      <div class="device device-hero" role="img" aria-label="A finished drive in Wandr: the route draws itself on the map and the journey card rises with 20.5 km in 1 hour 10 minutes">
+        <div class="screen">
+          <svg class="map" viewBox="0 0 300 640" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect width="300" height="640" fill="#121726"/>
+            <path class="m-water" d="M0 0 H72 C60 120 40 210 52 330 C62 440 30 540 44 640 H0 Z"/>
+            <path class="m-park" d="M196 120 L262 136 L250 214 L188 204 Z"/>
+            <path class="m-park" d="M110 470 L170 462 L176 520 L118 528 Z"/>
+            <g class="m-roads"><path d="M-10 96 L310 150"/><path d="M-10 300 L310 262"/><path d="M-10 560 C90 520 200 600 310 520"/><path d="M96 -10 L120 650"/><path d="M226 -10 L204 650"/></g>
+            <g class="m-streets"><path d="M-10 200 L310 214"/><path d="M-10 420 L310 410"/><path d="M160 -10 L168 650"/><path d="M-10 360 L310 352"/><path d="M40 -10 L60 650"/></g>
+            <path class="m-glow" pathLength="1" d="M70 590 C76 520 132 520 128 448 C124 388 214 400 206 318 C200 262 120 268 128 196 C134 140 196 136 222 70"/>
+            <path class="m-route" pathLength="1" d="M70 590 C76 520 132 520 128 448 C124 388 214 400 206 318 C200 262 120 268 128 196 C134 140 196 136 222 70"/>
+            <circle class="m-start" cx="70" cy="590" r="5"/>
+            <circle class="m-end" cx="222" cy="70" r="6"/>
+          </svg>
+          <div class="island"></div>
+          <div class="journey-card">
+            <span class="jc-mark">Wandr.</span>
+            <strong class="jc-title">Sunday coast run</strong>
+            <div class="jc-stats">
+              <span><small>Distance</small><b data-count="20.5" data-dec="1">20.5</b><em>km</em></span>
+              <span><small>Time</small><b>1h 10m</b></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="float-chip chip-a"><span class="av av-pink">A</span><b>3 friends</b> on the road</div>
+      <div class="float-chip chip-b"><span class="medal">★</span>New badge <b class="cyan">1,000 km</b></div>
+      <div class="float-chip chip-c"><svg class="flame" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c1 3.5 5 5.6 5 10.2A5 5 0 0 1 12 22a5 5 0 0 1-5-5c0-2.4 1.3-3.9 2.6-5.2.3 1.6 1 2.6 2.1 3.2-.5-3.4.4-6.6.3-13Z"/></svg><b>12 day</b> streak</div>
     </div>
   </div>
+
+  <a class="scroll-cue" href="#app" aria-label="Scroll to the app"><span></span></a>
 </section>
 
-<div class="marquee" aria-hidden="true">
-  <div class="track">
-    <span>Record</span><i>✦</i><span>Relive</span><i>✦</i><span>Share</span><i>✦</i><span>Discover</span><i>✦</i><span>Ride together</span><i>✦</i>
-    <span>Record</span><i>✦</i><span>Relive</span><i>✦</i><span>Share</span><i>✦</i><span>Discover</span><i>✦</i><span>Ride together</span><i>✦</i>
+<!-- ════════════ BAND ════════════ -->
+<div class="band" aria-hidden="true">
+  <div class="band-track" data-band>
+    <span>Record</span><i>✦</i><span class="o">Relive</span><i>✦</i><span>Share</span><i>✦</i><span class="o">Discover</span><i>✦</i><span>Ride together</span><i>✦</i>
+    <span>Record</span><i>✦</i><span class="o">Relive</span><i>✦</i><span>Share</span><i>✦</i><span class="o">Discover</span><i>✦</i><span>Ride together</span><i>✦</i>
   </div>
 </div>
 
-<!-- ───────── FEATURES ───────── -->
-<section class="section" id="features">
-  <div class="wrap">
-    <p class="eyebrow">What it does</p>
-    <h2 class="reveal">Built for the road you chose,<br>not the fastest one.</h2>
-
-    <div class="bento">
-      <article class="card c-wide reveal">
-        <span class="ico">●</span>
-        <h3>Record every journey</h3>
-        <p>One tap to start. Wandr keeps recording offline, in the background, and even through a crash. Add photos, notes, mood and weather as you go.</p>
-      </article>
-      <article class="card reveal">
-        <span class="ico">↺</span>
-        <h3>Relive it</h3>
-        <p>Watch your route draw itself on an animated reveal, with photos and notes in your journal.</p>
-      </article>
-      <article class="card c-wide c-ride reveal">
-        <span class="ico">◉</span>
-        <h3>Ride together, live</h3>
-        <p>Start a group ride and see every rider as their profile photo on one live map. Hold a button to talk, walkie-talkie style, with no call to set up.</p>
-      </article>
-      <article class="card reveal">
-        <span class="ico">↗</span>
-        <h3>Share it</h3>
-        <p>Beautiful journey cards and a 15-second Story video. Pick your cover photo, then save to your gallery.</p>
-      </article>
-      <article class="card reveal">
-        <span class="ico">◎</span>
-        <h3>Discover great roads</h3>
-        <p>Browse routes people have published, save them, and follow one as a line on the map.</p>
-      </article>
-      <article class="card reveal">
-        <span class="ico">☻</span>
-        <h3>Friends tab</h3>
-        <p>Every drive from you and your friends on one heatmap, with a friendly leaderboard, awards and group rides.</p>
-      </article>
-      <article class="card reveal">
-        <span class="ico">⚙</span>
-        <h3>Garage</h3>
-        <p>Every car and motorcycle you own, each with its own history of journeys.</p>
-      </article>
-      <article class="card reveal">
-        <span class="ico">☷</span>
-        <h3>Feed and comments</h3>
-        <p>Journeys, badges and new routes from people you follow and nearby. Like, comment and reply with an @tag.</p>
-      </article>
-      <article class="card reveal">
-        <span class="ico">★</span>
-        <h3>Badges and leaderboards</h3>
-        <p>Earn badges for distance, journeys and streaks. Opt in to the public leaderboard, ranked by distance.</p>
-      </article>
-      <article class="card reveal">
-        <span class="ico">▣</span>
-        <h3>Lock-screen card</h3>
-        <p>While you record, see distance and time on your lock screen and in the Dynamic Island, and pause without unlocking.</p>
-      </article>
-      <article class="card c-wide reveal">
-        <span class="ico">✦</span>
-        <h3>Your yearly recap</h3>
-        <p>Every December, a story-style look back: total distance, longest journey, favourite vehicle, new places and the people you rode with.</p>
-      </article>
-      <article class="card reveal">
-        <span class="ico">⌖</span>
-        <h3>Friends on the map</h3>
-        <p>Opt in to show your pin to friends while you ride. Off by default, and you can hide from anyone.</p>
-      </article>
+<!-- ════════════ THE APP: pinned, scroll moves the phones sideways ════════════ -->
+<section class="gallery" id="app">
+  <div class="gallery-pin">
+    <div class="wrap gallery-head">
+      <h2 data-reveal>Every road you love, <br><span class="hot">saved and shareable.</span></h2>
+      <p class="sub" data-reveal>Hit record and go. Wandr turns each drive or ride into a keepsake you can relive, share and ride again with friends.</p>
     </div>
-  </div>
-</section>
-
-<!-- ───────── SCREENS ───────── -->
-<section class="section screens" id="screens">
-  <div class="wrap">
-    <p class="eyebrow">The app</p>
-    <h2 class="reveal">Every road you love,<br>saved and shareable.</h2>
-    <p class="sub reveal">Hit record and go. Wandr turns each drive or ride into a keepsake you can relive, share, and ride again with friends.</p>
-  </div>
-  <div class="rail" role="list" aria-label="App screens">
-
-    <figure class="shot" role="listitem">
-      <div class="phone"><div class="screen"><img src="assets/shots/map.jpg" width="300" height="652" loading="lazy" alt="Wandr map screen with the Record button"></div></div>
-      <figcaption><b>Record</b>One tap, on a map that fills the screen.</figcaption>
-    </figure>
-    <figure class="shot" role="listitem">
-      <div class="phone"><div class="screen"><img src="assets/shots/journey.jpg" width="300" height="652" loading="lazy" alt="A finished journey with route and stats"></div></div>
-      <figcaption><b>Relive</b>Route, stats, weather and your vehicle.</figcaption>
-    </figure>
-    <figure class="shot" role="listitem">
-      <div class="phone"><div class="screen"><img src="assets/shots/share.jpg" width="300" height="652" loading="lazy" alt="Share screen with a journey card"></div></div>
-      <figcaption><b>Share</b>Cards and a Story video, ready to post.</figcaption>
-    </figure>
-    <figure class="shot" role="listitem" id="ride">
-      <div class="phone"><div class="screen">
-        <svg class="map"><use href="#map"/></svg><svg class="map route faint"><use href="#route"/></svg>
-        <span class="rider r1">A</span><span class="rider r2">M</span><span class="rider r3">S</span>
-        <div class="status"><span>9:41</span><span class="rec live"><i></i> LIVE</span></div>
-        <div class="sheet glass tall">
-          <div class="grab"></div>
+    <div class="gallery-track" data-track>
+      <figure class="shot"><div class="device"><div class="screen"><img src="assets/shots/map.jpg" width="300" height="652" alt="Wandr map with the Record button"></div></div><figcaption><b>Record</b>One tap, on a map that fills the screen.</figcaption></figure>
+      <figure class="shot"><div class="device"><div class="screen"><img src="assets/shots/journey.jpg" width="300" height="652" alt="A finished journey with route and stats"></div></div><figcaption><b>Relive</b>Route, stats, weather and your vehicle.</figcaption></figure>
+      <figure class="shot"><div class="device"><div class="screen"><img src="assets/shots/share.jpg" width="300" height="652" alt="Share screen with a journey card"></div></div><figcaption><b>Share</b>Cards and a Story video, ready to post.</figcaption></figure>
+      <figure class="shot" id="ride-shot"><div class="device"><div class="screen ride-screen">
+        <svg class="map" viewBox="0 0 300 640" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <rect width="300" height="640" fill="#121726"/>
+          <g class="m-roads"><path d="M-10 120 L310 170"/><path d="M-10 380 L310 330"/><path d="M110 -10 L130 650"/><path d="M230 -10 L210 650"/></g>
+          <path class="m-route soft" d="M60 600 C80 500 150 520 140 430 C130 350 230 360 215 270 C205 200 120 210 128 130 C132 90 190 80 215 40"/>
+        </svg>
+        <span class="rider r1" style="offset-path:path('M60 600 C80 500 150 520 140 430 C130 350 230 360 215 270 C205 200 120 210 128 130 C132 90 190 80 215 40')">A</span>
+        <span class="rider r2" style="offset-path:path('M60 600 C80 500 150 520 140 430 C130 350 230 360 215 270 C205 200 120 210 128 130 C132 90 190 80 215 40')">M</span>
+        <span class="rider r3" style="offset-path:path('M60 600 C80 500 150 520 140 430 C130 350 230 360 215 270 C205 200 120 210 128 130 C132 90 190 80 215 40')">S</span>
+        <div class="island"></div>
+        <div class="ride-sheet">
           <div class="ttl">Sunrise ride · 4 riders</div>
           <ul class="riders">
-            <li><span class="av r1">A</span>Aarav<em class="speaking">speaking</em></li>
-            <li><span class="av r2">M</span>Meera<em>1.2 km ahead</em></li>
-            <li><span class="av r3">S</span>Sam<em>400 m behind</em></li>
+            <li><span class="av av-pink">A</span>Aarav<em class="speaking"><i></i><i></i><i></i><i></i> speaking</em></li>
+            <li><span class="av av-cyan">M</span>Meera<em>1.2 km ahead</em></li>
+            <li><span class="av av-gold">S</span>Sam<em>400 m behind</em></li>
           </ul>
           <span class="ptt">Hold to talk</span>
         </div>
-      </div></div>
-      <figcaption><b>Ride together</b>Live map with push-to-talk voice (concept).</figcaption>
-    </figure>
-    <figure class="shot" role="listitem">
-      <div class="phone"><div class="screen"><img src="assets/shots/friends.jpg" width="300" height="652" loading="lazy" alt="Friends tab with leaderboard"></div></div>
-      <figcaption><b>Friends</b>Rivalry, awards and a shared heatmap.</figcaption>
-    </figure>
-    <figure class="shot" role="listitem">
-      <div class="phone"><div class="screen"><img src="assets/shots/feed.jpg" width="300" height="652" loading="lazy" alt="Following feed"></div></div>
-      <figcaption><b>Feed</b>Journeys from people you follow.</figcaption>
-    </figure>
-    <figure class="shot" role="listitem">
-      <div class="phone"><div class="screen"><img src="assets/shots/garage.jpg" width="300" height="652" loading="lazy" alt="Garage screen with two vehicles"></div></div>
-      <figcaption><b>Garage</b>Every car and bike, with its own history.</figcaption>
-    </figure>
-
+      </div></div><figcaption><b>Ride together</b>One live map, push-to-talk voice.</figcaption></figure>
+      <figure class="shot"><div class="device"><div class="screen"><img src="assets/shots/friends.jpg" width="300" height="652" alt="Friends tab with leaderboard"></div></div><figcaption><b>Friends</b>Rivalry, awards and everyone's trails.</figcaption></figure>
+      <figure class="shot"><div class="device"><div class="screen"><img src="assets/shots/feed.jpg" width="300" height="652" alt="Following feed"></div></div><figcaption><b>Feed</b>Journeys from people you follow.</figcaption></figure>
+      <figure class="shot"><div class="device"><div class="screen"><img src="assets/shots/garage.jpg" width="300" height="652" alt="Garage with two vehicles"></div></div><figcaption><b>Garage</b>Every car and bike, with its own history.</figcaption></figure>
+    </div>
+    <div class="wrap gallery-progress" aria-hidden="true"><span data-progress></span></div>
   </div>
-  <p class="wrap fine center">Screens from the app running on demo data. The group ride screen is a design concept.</p>
 </section>
 
-<!-- ───────── HOW ───────── -->
-<section class="section" id="how">
+<!-- ════════════ FEATURES: live tiles ════════════ -->
+<section class="section features" id="features">
   <div class="wrap">
-    <p class="eyebrow">How it works</p>
-    <h2 class="reveal">Three steps. No homework.</h2>
-    <ol class="steps">
-      <li class="reveal"><span class="n">01</span><h3>Tap record</h3><p>Pick your car or bike and go. Wandr logs the route in the background, even with no signal.</p></li>
-      <li class="reveal"><span class="n">02</span><h3>Add the moments</h3><p>Drop photos and notes on the way, then see the whole journey rendered as a keepsake when you stop.</p></li>
-      <li class="reveal"><span class="n">03</span><h3>Share or ride together</h3><p>Post a journey card, publish a route, or open a live group ride and bring your friends along.</p></li>
-    </ol>
+    <h2 data-reveal>Built for the road you chose, <br><span class="hot">not the fastest one.</span></h2>
+
+    <div class="tiles">
+      <article class="tile t-record" data-rise>
+        <div class="tile-visual rec-visual" aria-hidden="true">
+          <div class="rec-ring"><span></span></div>
+          <div class="rec-readout"><b data-ticker>0.0</b><small>km</small></div>
+        </div>
+        <h3>Record every journey</h3>
+        <p>One tap to start. Keeps going offline, in the background and through a crash. The map follows you from behind, in 3D, like a real navigation app.</p>
+      </article>
+
+      <article class="tile t-relive" data-rise>
+        <div class="tile-visual" aria-hidden="true">
+          <svg viewBox="0 0 320 160" class="relive-svg">
+            <path class="relive-ghost" d="M20 130 C70 130 70 40 130 50 C190 60 170 130 230 120 C280 112 270 40 300 30"/>
+            <path class="relive-line" pathLength="1" d="M20 130 C70 130 70 40 130 50 C190 60 170 130 230 120 C280 112 270 40 300 30"/>
+          </svg>
+        </div>
+        <h3>Relive it</h3>
+        <p>Your route draws itself on a dark map, photos pop up where you took them, then the whole drive settles into a card.</p>
+      </article>
+
+      <article class="tile t-ride" data-rise id="ride">
+        <div class="tile-visual ride-visual" aria-hidden="true">
+          <span class="wave"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+          <div class="ride-avs"><span class="av av-pink">A</span><span class="av av-cyan">M</span><span class="av av-gold">S</span><span class="av av-violet">+1</span></div>
+        </div>
+        <h3>Ride together, live</h3>
+        <p>Everyone on one live map as their profile photo. Hold a button to talk to the group, walkie-talkie style. No call to set up.</p>
+      </article>
+
+      <article class="tile t-share" data-rise>
+        <div class="tile-visual share-visual" aria-hidden="true">
+          <div class="mini-card c1"></div><div class="mini-card c2"></div><div class="mini-card c3"><b>20.5 km</b><small>Sunday coast run</small></div>
+        </div>
+        <h3>Share it</h3>
+        <p>Journey cards in Story, Portrait or Square, and a 15-second Story video. Pick the photo, place the route, post.</p>
+      </article>
+
+      <article class="tile t-streak" data-rise>
+        <div class="tile-visual streak-visual" aria-hidden="true"><div class="streak-grid" data-streak></div></div>
+        <h3>Keep the streak</h3>
+        <p>A year of driving as glowing squares: brighter the more you drove that day. Badges at a week, a month, three months, a year.</p>
+      </article>
+
+      <article class="tile t-trails" data-rise>
+        <div class="tile-visual" aria-hidden="true">
+          <svg viewBox="0 0 320 160" class="trails-svg">
+            <path class="trail tp" d="M10 120 C80 90 120 140 190 100 S290 40 312 60"/>
+            <path class="trail tc" d="M10 40 C70 70 140 20 200 60 S280 130 312 110"/>
+            <path class="trail tv" d="M30 150 C90 110 150 90 160 40 S240 20 300 10"/>
+          </svg>
+        </div>
+        <h3>Friends, as light trails</h3>
+        <p>Every drive from you and your friends glows on one map, each person in their own colour. A leaderboard, awards and rivalries on top.</p>
+      </article>
+    </div>
+
+    <ul class="more" data-rise>
+      <li><b>Garage</b> every car and bike with its own history</li>
+      <li><b>Feed</b> likes, comments and @tags</li>
+      <li><b>Badges</b> and an opt-in public leaderboard</li>
+      <li><b>Lock-screen card</b> and Dynamic Island while you record</li>
+      <li><b>Yearly recap</b> every December</li>
+      <li><b>Friends on the map</b> off by default</li>
+      <li><b>Clean routes</b> even through tunnels and under bridges</li>
+    </ul>
   </div>
 </section>
 
-<!-- ───────── MAKER ───────── -->
-<section class="section maker" id="maker">
+<!-- ════════════ HOW: a road that draws as you scroll ════════════ -->
+<section class="section how" id="how">
+  <div class="wrap">
+    <h2 data-reveal>Three steps. <br><span class="hot">No homework.</span></h2>
+    <div class="how-road">
+      <svg class="road-svg" viewBox="0 0 1000 120" preserveAspectRatio="none" aria-hidden="true">
+        <path class="road-bg" d="M0 60 C200 10 300 110 500 60 S800 10 1000 60"/>
+        <path class="road-line" pathLength="1" data-scrub d="M0 60 C200 10 300 110 500 60 S800 10 1000 60"/>
+      </svg>
+      <ol class="steps">
+        <li data-rise><span class="n">01</span><h3>Tap record</h3><p>Pick your car or bike and go. Wandr logs the route in the background, even with no signal.</p></li>
+        <li data-rise><span class="n">02</span><h3>Add the moments</h3><p>Drop photos and notes on the way, then watch the whole journey reveal itself when you stop.</p></li>
+        <li data-rise><span class="n">03</span><h3>Share or ride together</h3><p>Post a card, publish a route, or open a live group ride and bring your friends along.</p></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ STATEMENT ════════════ -->
+<section class="section statement">
+  <div class="wrap">
+    <p class="big-statement" data-words>The fastest way home is a map's job. The long way round is <span class="hot">yours.</span> Wandr remembers every bend of it.</p>
+  </div>
+</section>
+
+<!-- ════════════ ABOUT ════════════ -->
+<section class="section maker">
   <div class="wrap maker-grid">
-    <div>
-      <p class="eyebrow">About</p>
-      <h2 class="reveal">Made for the drive, not the leaderboard.</h2>
-    </div>
-    <div class="reveal">
-      <p class="sub" style="margin-top:0">Wandr started as a personal journal for drives and rides taken just for the pleasure of it. It rewards distance and showing up, and keeps your speed off cards, the feed and public boards.</p>
-      <p class="sub">It's built by one person who loves a good road. Got feedback, a feature idea or a bug? <a data-contact href="mailto:hello@wandr.app">Say hello</a>.</p>
+    <h2 data-reveal>Made for the drive, <br><span class="hot">not the leaderboard.</span></h2>
+    <div data-rise>
+      <p class="sub">Wandr started as a journal for drives and rides taken just for the pleasure of it.</p>
+      <p class="sub">It's built by two friends who love a good road. Got feedback, an idea or a bug? <a data-contact href="mailto:hello@wandr.app">Say hello</a>.</p>
     </div>
   </div>
 </section>
 
-<!-- ───────── FAQ ───────── -->
+<!-- ════════════ FAQ ════════════ -->
 <section class="section" id="faq">
-  <div class="wrap">
-    <p class="eyebrow">FAQ</p>
-    <h2 class="reveal">Quick answers.</h2>
-    <div class="faq reveal">
-      <details open><summary>Is Wandr free?</summary><p>Yes. Recording, the journal, the garage, badges, the Friends tab and group rides are free.</p></details>
-      <details><summary>Does it work offline?</summary><p>Recording, the journal, the garage and saved routes all work with no signal. Journeys sync when you're back online.</p></details>
-      <details><summary>Will it drain my battery?</summary><p>Wandr is built to keep recording in the background without keeping the screen on. A phone mount and charger on long drives is still a good idea.</p></details>
-      <details><summary>Who can see my journeys?</summary><p>You choose privacy per journey, and set a default in Settings. Your home location can be kept private too.</p></details>
-      <details><summary>Who can see my speed?</summary><p>Only you, on your own journeys. It never appears on cards, the feed, profiles or the public leaderboard. Mutual friends can compare top speed on the Friends leaderboard.</p></details>
-      <details><summary>Can my friends see where I am?</summary><p>Only if you switch on Friends on the map in Settings. It is off by default, shows only while you ride, and you can hide from anyone.</p></details>
-      <details><summary>How do group rides work?</summary><p>Start a ride, invite friends, and everyone appears on one live map. Hold the talk button to speak to the group, walkie-talkie style.</p></details>
-      <details><summary>Which phones are supported?</summary><p>iPhone and Android phones. Android uses OpenStreetMap maps; iPhone uses Apple Maps.</p></details>
-      <details><summary>When can I get it?</summary><p>Wandr is coming soon to the App Store and Google Play. Email us from the download section and we will tell you the day it lands.</p></details>
+  <div class="wrap faq-grid">
+    <h2 data-reveal>Quick <br><span class="hot">answers.</span></h2>
+    <div class="faq" data-rise>
+      <details open><summary>Is Wandr free?</summary><div class="ans"><p>Yes. Recording, the journal, the garage, badges, the Friends tab and group rides are free.</p></div></details>
+      <details><summary>Does it work offline?</summary><div class="ans"><p>Recording, the journal, the garage and saved routes all work with no signal. Journeys sync when you're back online.</p></div></details>
+      <details><summary>Will it drain my battery?</summary><div class="ans"><p>Wandr records in the background without keeping the screen on. A mount and a charger on long drives is still a good idea.</p></div></details>
+      <details><summary>Who can see my journeys?</summary><div class="ans"><p>You choose per journey, with a default in Settings. The start and end of a drive can be hidden too.</p></div></details>
+      <details><summary>Who can see my speed?</summary><div class="ans"><p>Only you, on your own journeys. Never on cards, the feed, profiles or the public leaderboard. Mutual friends can compare top speed on the Friends board.</p></div></details>
+      <details><summary>Can friends see where I am?</summary><div class="ans"><p>Only if you switch on Friends on the map. It's off by default, shows only while you ride, and you can hide from anyone.</p></div></details>
+      <details><summary>Which phones work?</summary><div class="ans"><p>iPhone and Android. iPhone uses Apple Maps; Android uses OpenStreetMap.</p></div></details>
+      <details><summary>When can I get it?</summary><div class="ans"><p>Soon, on the App Store and Google Play. Email us from below and we'll tell you the day it lands.</p></div></details>
     </div>
   </div>
 </section>
 
-<!-- ───────── DOWNLOAD ───────── -->
-<section class="section cta" id="download">
-  <div class="sun sun-b" aria-hidden="true"></div>
-  <div class="wrap center">
-    <img class="cta-icon" src="assets/wandr-mark.png" width="96" height="96" alt="Wandr app icon">
-    <h2>Take Wandr on your<br>next drive.</h2>
+<!-- ════════════ DOWNLOAD ════════════ -->
+<section class="cta" id="download">
+  <div class="sky sky-cta" aria-hidden="true"><div class="sun sun-cta"><i></i></div><div class="grid"><div class="grid-plane"></div></div></div>
+  <div class="wrap cta-inner">
+    <img class="cta-icon" src="assets/wandr-mark.png" width="104" height="104" alt="Wandr app icon">
+    <h2 data-reveal>Take Wandr on your <br><span class="hot">next drive.</span></h2>
     <p class="sub" data-cta-sub>Wandr is on its way to the App Store and Google Play. Email us and we'll tell you the day it lands.</p>
-    <div class="dl dl-center" data-download></div>
+    <div class="dl" data-download></div>
     <div class="qr-block" data-qr hidden>
       <div class="qr" id="qr" role="img" aria-label="QR code to download Wandr"></div>
       <p>Scan with your phone to get the app</p>
@@ -299,26 +305,19 @@
 
 <footer class="footer">
   <div class="wrap foot">
-    <a class="brand" href="#top"><img src="assets/wandr-mark.png" width="28" height="28" alt=""><span>Wandr</span></a>
+    <a class="brand" href="#top"><img src="assets/wandr-mark.png" width="28" height="28" alt=""><span>Wandr<b>.</b></span></a>
     <p>Every journey tells a story.</p>
-    <nav aria-label="Footer">
-      <a href="terms.html">Terms</a>
-      <a href="privacy.html">Privacy</a>
-      <a data-contact href="mailto:hello@wandr.app">Contact</a>
-    </nav>
+    <nav aria-label="Footer"><a href="terms.html">Terms</a><a href="privacy.html">Privacy</a><a data-contact href="mailto:hello@wandr.app">Contact</a></nav>
     <p class="fine">&copy; <span id="yr">2026</span> Wandr. Apple, App Store, Google Play and Android are trademarks of their respective owners.</p>
   </div>
 </footer>
 
-<!-- Sticky mobile bar -->
-<div class="stickybar" id="stickybar" hidden>
-  <a class="btn" href="#download" data-sticky-cta>Get the app</a>
-</div>
-
-<div class="toast glass" id="toast" role="status" aria-live="polite" hidden></div>
+<div class="stickybar" id="stickybar" hidden><a class="btn" href="#download" data-sticky-cta>Get the app</a></div>
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
 
 <script src="config.js"></script>
 <script src="vendor/qrcode.js"></script>
 <script src="script.js"></script>
+<script src="site.js"></script>
 </body>
 </html>
